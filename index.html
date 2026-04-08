@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Globe Agency — Influencer Marketing che Genera Risultati</title>
+  <meta name="description" content="Globe Agency: 30+ professionisti, 6 reparti dedicati, 500+ campagne gestite. L'agenzia di influencer marketing strutturata per brand, attività locali ed e-commerce." />
+  <meta property="og:title" content="Globe Agency — Influencer Marketing che Genera Risultati" />
+  <meta property="og:description" content="8 anni. 500+ campagne. 30+ professionisti. Connettere brand e creator con precisione, a scala." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://globeoneagency.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <style>
+
+    /* ============================================================
+       RESET
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      background: #050505;
+      color: #f0ede8;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    ::selection { background: #c8f04d; color: #050505; }
+
+    /* ============================================================
+       VARIABLES
+    ============================================================ */
+    :root {
+      --accent:     #c8f04d;
+      --accent-dim: rgba(200,240,77,0.12);
+      --bg:         #050505;
+      --bg-card:    #0e0e0e;
+      --bg-card2:   #141414;
+      --border:     rgba(255,255,255,0.07);
+      --text:       #f0ede8;
+      --muted:      rgba(240,237,232,0.45);
+      --mid:        rgba(240,237,232,0.7);
+      --display:    'Syne', sans-serif;
+      --body:       'DM Sans', sans-serif;
+      --r:          16px;
+      --rs:         10px;
+      --ease:       cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* ============================================================
+       SCROLLBAR
+    ============================================================ */
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
+
+    /* ============================================================
+       NOISE
+    ============================================================ */
+    .noise {
+      position: fixed; inset: 0; z-index: 1;
+      pointer-events: none; opacity: 0.028;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 200px;
+    }
+
+    /* ============================================================
+       UTILITIES
+    ============================================================ */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+
+    .eyebrow {
+      font-family: var(--display);
+      font-size: 11px; letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent); font-weight: 600;
+    }
+    .section-title {
+      font-family: var(--display);
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 800; line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+    .section-sub {
+      font-size: 1.05rem; color: var(--mid);
+      max-width: 560px; line-height: 1.7;
+    }
+
+    /* Reveal — threshold 0 ensures every element animates */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .d1 { transition-delay: 0.1s; }
+    .d2 { transition-delay: 0.2s; }
+    .d3 { transition-delay: 0.3s; }
+    .d4 { transition-delay: 0.4s; }
+
+    /* ============================================================
+       NAVBAR
+    ============================================================ */
+    #navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 900;
+      padding: 24px 0;
+      border-bottom: 1px solid transparent;
+      transition: background 0.4s, padding 0.4s, border-color 0.4s;
+    }
+    #navbar.scrolled {
+      background: rgba(5,5,5,0.9);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 16px 0;
+      border-bottom-color: var(--border);
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo {
+      font-family: var(--display);
+      font-size: 1.25rem; font-weight: 800;
+      letter-spacing: -0.04em; color: var(--text);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .nav-dot { width: 7px; height: 7px; background: var(--accent); border-radius: 50%; }
+    .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+    .nav-links a { font-size: 0.875rem; color: var(--muted); transition: color 0.25s; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta {
+      background: var(--accent); color: #050505 !important;
+      font-weight: 600 !important; padding: 10px 22px;
+      border-radius: 100px; font-size: 0.875rem !important;
+      transition: transform 0.25s var(--ease), box-shadow 0.25s;
+    }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(200,240,77,0.35); }
+
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 6px;
+    }
+    .hamburger span {
+      display: block; width: 22px; height: 1.5px; background: var(--text);
+      transition: transform 0.35s var(--ease), opacity 0.3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none; position: fixed; inset: 0; z-index: 800;
+      background: var(--bg);
+      flex-direction: column; align-items: center; justify-content: center; gap: 36px;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.4s var(--ease);
+    }
+    .mobile-menu.open { opacity: 1; pointer-events: all; }
+    .mobile-menu a {
+      font-family: var(--display); font-size: 2.2rem; font-weight: 700;
+      color: var(--mid); transition: color 0.2s;
+    }
+    .mobile-menu a:hover { color: var(--accent); }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    #hero {
+      min-height: 100vh; display: flex; align-items: center;
+      position: relative; overflow: hidden; padding: 120px 0 80px;
+    }
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 80px 80px;
+      mask-image: radial-gradient(ellipse 80% 70% at 60% 50%, black 0%, transparent 100%);
+    }
+    .hero-glow {
+      position: absolute; width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(200,240,77,0.07) 0%, transparent 70%);
+      top: 50%; left: 55%; transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center; gap: 80px;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(200,240,77,0.08); border: 1px solid rgba(200,240,77,0.2);
+      border-radius: 100px; padding: 7px 16px;
+      font-size: 0.78rem; letter-spacing: 0.05em;
+      color: var(--accent); font-weight: 500; margin-bottom: 32px;
+    }
+    .hero-badge::before {
+      content: ''; width: 6px; height: 6px;
+      background: var(--accent); border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+    .hero-headline {
+      font-family: var(--display);
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-weight: 800; line-height: 1.0;
+      letter-spacing: -0.04em; margin-bottom: 24px;
+    }
+    .hero-headline em { font-style: normal; color: var(--accent); }
+    .hero-sub { font-size: 1.1rem; color: var(--mid); line-height: 1.7; max-width: 460px; margin-bottom: 44px; }
+    .hero-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--accent); color: #050505;
+      font-weight: 600; font-size: 0.95rem;
+      padding: 15px 30px; border-radius: 100px;
+      border: none; cursor: pointer;
+      transition: transform 0.3s var(--ease), box-shadow 0.3s;
+      white-space: nowrap; text-decoration: none;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(200,240,77,0.4); }
+    .btn-primary svg { transition: transform 0.3s var(--ease); }
+    .btn-primary:hover svg { transform: translateX(3px); }
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--mid); font-size: 0.95rem;
+      border: none; background: none; cursor: pointer;
+      transition: color 0.25s; text-decoration: none;
+    }
+    .btn-ghost:hover { color: var(--text); }
+
+    .hero-visual { display: flex; align-items: center; justify-content: center; }
+    .globe-wrap { position: relative; width: 420px; height: 420px; }
+    .globe-wrap svg { width: 100%; height: 100%; }
+    .ring-orbit  { transform-origin: center; animation: orbit 8s linear infinite; }
+    .ring-orbit2 { transform-origin: center; animation: orbit 12s linear infinite reverse; }
+    .ring-orbit3 { transform-origin: center; animation: orbit 6s linear infinite; animation-delay:-2s; }
+    @keyframes orbit { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+    .globe-core { animation: float 4s ease-in-out infinite; }
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+    .dpulse { animation: dpulse 2.5s ease-in-out infinite; }
+    .dpulse:nth-child(2){ animation-delay:0.5s; }
+    .dpulse:nth-child(3){ animation-delay:1s; }
+    @keyframes dpulse { 0%,100%{opacity:0.4} 50%{opacity:1} }
+    .hero-line { position: absolute; bottom:0; left:0; right:0; height:1px; background:var(--border); }
+
+    /* ============================================================
+       STATS
+    ============================================================ */
+    #numbers { padding: 80px 0; border-bottom: 1px solid var(--border); }
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(4,1fr);
+      gap: 1px; background: var(--border);
+      border: 1px solid var(--border); border-radius: var(--r); overflow: hidden;
+    }
+    .stat-item {
+      background: var(--bg); padding: 48px 40px;
+      display: flex; flex-direction: column; gap: 8px;
+      transition: background 0.3s;
+    }
+    .stat-item:hover { background: var(--bg-card2); }
+    .stat-num { font-family: var(--display); font-size: clamp(2.5rem,4vw,3.8rem); font-weight: 800; letter-spacing: -0.04em; line-height: 1; }
+    .stat-suf { color: var(--accent); }
+    .stat-lbl { font-size: 0.875rem; color: var(--muted); font-weight: 300; }
+
+    /* ============================================================
+       CHI SIAMO
+    ============================================================ */
+    #chi-siamo { padding: 140px 0; }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: center; }
+    .about-visual { position: relative; }
+    .about-img {
+      width: 100%; aspect-ratio: 4/5;
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--r); overflow: hidden; position: relative;
+    }
+    .about-img::after {
+      content:''; position:absolute; inset:0;
+      background: linear-gradient(135deg, rgba(200,240,77,0.05) 0%, transparent 60%);
+    }
+    .about-img-inner { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; }
+    .about-tag {
+      position: absolute; background: var(--bg-card2);
+      border: 1px solid var(--border); border-radius: var(--rs);
+      padding: 14px 20px; font-size: 0.82rem; font-weight: 500;
+    }
+    .about-tag.t1 { bottom: 24px; left: -20px; }
+    .about-tag.t2 { top: 32px; right: -20px; }
+    .about-tag span { color: var(--accent); font-weight: 700; }
+    .about-body { display: flex; flex-direction: column; }
+    .about-eyebrow { margin-bottom: 16px; }
+    .about-title { margin-bottom: 28px; }
+    .about-text { color: var(--mid); line-height: 1.8; margin-bottom: 48px; font-size: 1.05rem; }
+    .values { list-style: none; display: flex; flex-direction: column; gap: 16px; }
+    .values li { display: flex; align-items: flex-start; gap: 14px; font-size: 0.95rem; color: var(--mid); }
+    .val-icon {
+      flex-shrink: 0; width: 36px; height: 36px;
+      background: var(--accent-dim); border: 1px solid rgba(200,240,77,0.15);
+      border-radius: 8px; display: flex; align-items: center; justify-content: center;
+    }
+    .val-icon svg { width: 16px; height: 16px; color: var(--accent); }
+    .val-text strong { display: block; color: var(--text); font-weight: 500; margin-bottom: 2px; }
+
+    /* ============================================================
+       TEAM
+    ============================================================ */
+    #team { padding: 140px 0; border-top: 1px solid var(--border); }
+    .team-header { margin-bottom: 64px; }
+    .team-header .section-sub { margin-top: 20px; }
+
+    .team-bar {
+      display: flex; align-items: center;
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--r); padding: 32px 48px; margin-bottom: 64px;
+    }
+    .tbar-item { flex: 1; display: flex; flex-direction: column; gap: 6px; align-items: center; text-align: center; }
+    .tbar-num { font-family: var(--display); font-size: 2.2rem; font-weight: 800; letter-spacing: -0.04em; line-height: 1; }
+    .tbar-num span { color: var(--accent); }
+    .tbar-lbl { font-size: 0.8rem; color: var(--muted); }
+    .tbar-div { width: 1px; height: 48px; background: var(--border); flex-shrink: 0; }
+
+    .reparti { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+    .rep-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--r); padding: 36px 32px;
+      display: flex; flex-direction: column; gap: 16px;
+      transition: border-color 0.35s, transform 0.35s var(--ease);
+      position: relative; overflow: hidden;
+    }
+    .rep-card::after {
+      content:''; position:absolute; inset:0;
+      background: linear-gradient(135deg, rgba(200,240,77,0.03) 0%, transparent 60%);
+      opacity: 0; transition: opacity 0.4s;
+    }
+    .rep-card:hover { border-color: rgba(200,240,77,0.2); transform: translateY(-3px); }
+    .rep-card:hover::after { opacity: 1; }
+    .rep-top { display: flex; justify-content: space-between; align-items: flex-start; }
+    .rep-icon {
+      width: 44px; height: 44px; background: var(--accent-dim);
+      border: 1px solid rgba(200,240,77,0.15); border-radius: 11px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .rep-icon svg { width: 20px; height: 20px; color: var(--accent); }
+    .rep-num { font-family: var(--display); font-size: 0.72rem; letter-spacing: 0.12em; color: var(--muted); font-weight: 600; }
+    .rep-name { font-family: var(--display); font-size: 1.05rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; }
+    .rep-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.7; flex: 1; }
+    .rep-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .rep-tags span {
+      background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+      border-radius: 100px; padding: 4px 12px; font-size: 0.72rem; color: var(--muted);
+    }
+
+    /* ============================================================
+       SERVIZI
+    ============================================================ */
+    #servizi { padding: 140px 0; border-top: 1px solid var(--border); }
+    .servizi-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 72px; gap: 40px; }
+    .servizi-grid {
+      display: grid; grid-template-columns: repeat(3,1fr);
+      gap: 1px; background: var(--border);
+      border: 1px solid var(--border); border-radius: var(--r); overflow: hidden;
+    }
+    .serv-card {
+      background: var(--bg); padding: 44px 36px;
+      position: relative; overflow: hidden; transition: background 0.4s;
+      display: flex; flex-direction: column; gap: 20px;
+    }
+    .serv-card::before {
+      content:''; position:absolute; bottom:0; left:0; right:0; height:2px;
+      background: var(--accent); transform: scaleX(0);
+      transition: transform 0.4s var(--ease);
+    }
+    .serv-card:hover { background: var(--bg-card2); }
+    .serv-card:hover::before { transform: scaleX(1); }
+    .serv-icon {
+      width: 48px; height: 48px; background: var(--accent-dim);
+      border: 1px solid rgba(200,240,77,0.15); border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .serv-icon svg { width: 22px; height: 22px; color: var(--accent); }
+    .serv-name { font-family: var(--display); font-size: 1.1rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; }
+    .serv-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.7; flex: 1; }
+    .serv-arrow {
+      width: 32px; height: 32px; border-radius: 50%; background: var(--border);
+      display: flex; align-items: center; justify-content: center; align-self: flex-start;
+      transition: background 0.3s, transform 0.3s var(--ease);
+    }
+    .serv-arrow svg { width: 14px; height: 14px; color: var(--muted); transition: color 0.3s; }
+    .serv-card:hover .serv-arrow { background: var(--accent); transform: translateX(4px); }
+    .serv-card:hover .serv-arrow svg { color: #050505; }
+
+    /* ============================================================
+       COME LAVORIAMO
+    ============================================================ */
+    #come-lavoriamo { padding: 140px 0; border-top: 1px solid var(--border); }
+    .process-header { text-align: center; margin-bottom: 80px; }
+    .process-header .section-sub { margin: 20px auto 0; text-align: center; }
+    .process-wrap { position: relative; }
+    .process-line {
+      position: absolute; top: 32px; left: 12.5%; right: 12.5%; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border) 20%, var(--border) 80%, transparent);
+    }
+    .process-fill {
+      position: absolute; top: 32px; left: 12.5%; height: 1px;
+      background: var(--accent); width: 0; transition: width 1.5s var(--ease);
+    }
+    .process-fill.go { width: 75%; }
+    .process-steps { display: grid; grid-template-columns: repeat(4,1fr); }
+    .step { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0 20px; position: relative; }
+    .step-dot {
+      width: 64px; height: 64px; background: var(--bg-card);
+      border: 1px solid var(--border); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 28px; position: relative; z-index: 1; flex-shrink: 0;
+      transition: border-color 0.4s, background 0.4s;
+    }
+    .step-dot svg { width: 24px; height: 24px; color: var(--muted); transition: color 0.4s; }
+    .step.active .step-dot { border-color: var(--accent); background: var(--accent-dim); }
+    .step.active .step-dot svg { color: var(--accent); }
+    .step-n { font-family: var(--display); font-size: 0.72rem; letter-spacing: 0.15em; color: var(--accent); font-weight: 700; margin-bottom: 6px; }
+    .step-title { font-family: var(--display); font-size: 1rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 8px; }
+    .step-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+
+    /* ============================================================
+       PER CHI
+    ============================================================ */
+    #per-chi { padding: 140px 0; border-top: 1px solid var(--border); }
+    .perchi-header { margin-bottom: 64px; }
+    .perchi-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; }
+    .perchi-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--r); padding: 44px 40px;
+      display: flex; flex-direction: column; gap: 20px;
+      transition: border-color 0.35s, transform 0.35s var(--ease);
+      position: relative; overflow: hidden;
+    }
+    .perchi-card::after {
+      content:''; position:absolute; top:0; left:0; right:0; height:1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0; transition: opacity 0.4s;
+    }
+    .perchi-card:hover { border-color: rgba(200,240,77,0.2); transform: translateY(-3px); }
+    .perchi-card:hover::after { opacity: 1; }
+    .perchi-icon {
+      width: 56px; height: 56px; background: var(--accent-dim);
+      border: 1px solid rgba(200,240,77,0.15); border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .perchi-icon svg { width: 26px; height: 26px; color: var(--accent); }
+    .perchi-title { font-family: var(--display); font-size: 1.35rem; font-weight: 700; letter-spacing: -0.03em; }
+    .perchi-text { font-size: 0.925rem; color: var(--mid); line-height: 1.7; }
+    .perchi-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.85rem; font-weight: 500; color: var(--accent);
+      margin-top: auto; transition: gap 0.25s;
+    }
+    .perchi-card:hover .perchi-link { gap: 10px; }
+
+    /* ============================================================
+       TESTIMONIANZE
+    ============================================================ */
+    #testimonianze { padding: 140px 0; border-top: 1px solid var(--border); }
+    .testi-header { text-align: center; margin-bottom: 64px; }
+    .testi-header .section-sub { margin: 16px auto 0; text-align: center; }
+    .testi-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+    .testi-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--r); padding: 40px 36px;
+      display: flex; flex-direction: column; gap: 24px;
+      transition: border-color 0.3s;
+    }
+    .testi-card:hover { border-color: rgba(200,240,77,0.18); }
+    .stars { display: flex; gap: 4px; }
+    .stars span { color: var(--accent); font-size: 0.85rem; }
+    .testi-text { font-size: 0.975rem; color: var(--mid); line-height: 1.8; font-style: italic; flex: 1; }
+    .testi-author { display: flex; align-items: center; gap: 14px; }
+    .testi-av {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--bg-card2); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--display); font-weight: 700; font-size: 0.9rem; color: var(--accent);
+    }
+    .testi-name { font-weight: 500; font-size: 0.9rem; }
+    .testi-role { font-size: 0.8rem; color: var(--muted); }
+
+    /* ============================================================
+       FAQ
+    ============================================================ */
+    #faq { padding: 140px 0; border-top: 1px solid var(--border); }
+    .faq-inner { display: grid; grid-template-columns: 1fr 1.6fr; gap: 100px; align-items: start; }
+    .faq-list { display: flex; flex-direction: column; }
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-q {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 24px 0; cursor: pointer;
+      font-weight: 500; font-size: 0.975rem; gap: 24px; transition: color 0.25s;
+    }
+    .faq-q:hover, .faq-q.open { color: var(--accent); }
+    .faq-tog {
+      width: 28px; height: 28px; border-radius: 50%;
+      border: 1px solid var(--border); flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .faq-q.open .faq-tog { background: var(--accent-dim); border-color: rgba(200,240,77,0.3); }
+    .faq-ico { width: 10px; height: 10px; position: relative; }
+    .faq-ico::before, .faq-ico::after { content:''; position:absolute; background: var(--muted); transition: transform 0.35s var(--ease), opacity 0.35s; }
+    .faq-ico::before { width:10px; height:1px; top:50%; left:0; transform:translateY(-50%); }
+    .faq-ico::after  { width:1px; height:10px; top:0; left:50%; transform:translateX(-50%); }
+    .faq-q.open .faq-ico::after { transform: translateX(-50%) rotate(90deg); opacity: 0; }
+    .faq-a {
+      max-height: 0; overflow: hidden;
+      font-size: 0.9rem; color: var(--muted); line-height: 1.75;
+      transition: max-height 0.45s var(--ease), padding 0.35s;
+    }
+    .faq-a.open { max-height: 300px; padding-bottom: 24px; }
+
+    /* ============================================================
+       CONTATTI
+    ============================================================ */
+    #contatti { padding: 140px 0; border-top: 1px solid var(--border); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: start; }
+    .contact-left .section-title { margin-bottom: 24px; }
+    .contact-left > p { color: var(--mid); line-height: 1.75; margin-bottom: 44px; }
+    .contact-details { display: flex; flex-direction: column; gap: 16px; }
+    .cdet { display: flex; align-items: center; gap: 14px; font-size: 0.9rem; color: var(--mid); }
+    .cdet svg { color: var(--accent); width: 16px; height: 16px; flex-shrink: 0; }
+    .cform {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--r); padding: 44px 40px;
+      display: flex; flex-direction: column; gap: 20px;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .fg { display: flex; flex-direction: column; gap: 8px; }
+    .fg label { font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+    .fg input, .fg select, .fg textarea {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: var(--rs); color: var(--text);
+      font-family: var(--body); font-size: 0.9rem;
+      padding: 13px 16px; outline: none; width: 100%;
+      transition: border-color 0.25s; appearance: none;
+    }
+    .fg input:focus, .fg select:focus, .fg textarea:focus { border-color: rgba(200,240,77,0.4); }
+    .fg input.err, .fg select.err, .fg textarea.err { border-color: rgba(255,80,80,0.5); }
+    .fg textarea { resize: vertical; min-height: 120px; }
+    .ferr { font-size: 0.78rem; color: #ff5050; display: none; }
+    .ferr.show { display: block; }
+    .btn-submit {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      background: var(--accent); color: #050505;
+      font-weight: 600; font-size: 0.95rem;
+      padding: 16px 32px; border-radius: 100px;
+      border: none; cursor: pointer; width: 100%;
+      transition: transform 0.3s var(--ease), box-shadow 0.3s;
+    }
+    .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(200,240,77,0.4); }
+    .btn-submit.loading { pointer-events: none; }
+    .btn-loader { display: none; width: 18px; height: 18px; border: 2px solid rgba(5,5,5,0.3); border-top-color: #050505; border-radius: 50%; animation: spin 0.8s linear infinite; }
+    .btn-submit.loading .btn-loader { display: block; }
+    .btn-submit.loading .btn-txt { display: none; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .form-ok { display: none; text-align: center; padding: 32px 0; flex-direction: column; align-items: center; gap: 16px; }
+    .form-ok.show { display: flex; }
+    .ok-icon { width: 56px; height: 56px; background: var(--accent-dim); border: 1px solid rgba(200,240,77,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    .ok-icon svg { color: var(--accent); width: 24px; height: 24px; }
+    .form-ok p { color: var(--mid); font-size: 0.95rem; }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    #footer { border-top: 1px solid var(--border); padding: 64px 0 40px; }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; margin-bottom: 60px; }
+    .footer-brand .nav-logo { font-size: 1.3rem; margin-bottom: 16px; }
+    .footer-tagline { font-size: 0.875rem; color: var(--muted); line-height: 1.6; max-width: 260px; }
+    .footer-socials { display: flex; gap: 12px; margin-top: 28px; }
+    .soc { width: 38px; height: 38px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: border-color 0.25s, background 0.25s; }
+    .soc:hover { border-color: rgba(200,240,77,0.3); background: var(--accent-dim); }
+    .soc svg { width: 15px; height: 15px; color: var(--muted); transition: color 0.25s; }
+    .soc:hover svg { color: var(--accent); }
+    .footer-col h4 { font-family: var(--display); font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 20px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .footer-col ul a { font-size: 0.875rem; color: var(--muted); transition: color 0.2s; }
+    .footer-col ul a:hover { color: var(--text); }
+    .footer-bottom { border-top: 1px solid var(--border); padding-top: 28px; display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; color: var(--muted); }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 1100px) {
+      .hero-content { grid-template-columns: 1fr; gap: 60px; }
+      .hero-visual { display: none; }
+      .about-grid { grid-template-columns: 1fr; gap: 60px; }
+      .about-visual { display: none; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+    }
+    @media (max-width: 900px) {
+      .stats-grid   { grid-template-columns: repeat(2,1fr); }
+      .reparti      { grid-template-columns: repeat(2,1fr); }
+      .servizi-grid { grid-template-columns: repeat(2,1fr); }
+      .perchi-grid  { grid-template-columns: 1fr; }
+      .testi-grid   { grid-template-columns: 1fr; }
+      .process-steps{ grid-template-columns: repeat(2,1fr); gap: 48px; }
+      .process-line, .process-fill { display: none; }
+      .contact-grid { grid-template-columns: 1fr; gap: 60px; }
+      .faq-inner    { grid-template-columns: 1fr; gap: 48px; }
+      .team-bar     { flex-wrap: wrap; gap: 24px; padding: 24px; }
+      .tbar-div     { display: none; }
+      .tbar-item    { flex: calc(50% - 12px); }
+    }
+    @media (max-width: 700px) {
+      .container    { padding: 0 20px; }
+      .nav-links    { display: none; }
+      .hamburger    { display: flex; }
+      .mobile-menu  { display: flex; }
+      .reparti      { grid-template-columns: 1fr; }
+      .servizi-grid { grid-template-columns: 1fr; }
+      .process-steps{ grid-template-columns: 1fr; }
+      .form-row     { grid-template-columns: 1fr; }
+      .footer-top   { grid-template-columns: 1fr; }
+      .footer-bottom{ flex-direction: column; gap: 12px; text-align: center; }
+      .servizi-header { flex-direction: column; align-items: flex-start; }
+      .hero-actions { flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 480px) {
+      .stat-item { padding: 28px 20px; }
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="noise"></div>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#chi-siamo"      onclick="closeMob()">Chi Siamo</a>
+  <a href="#team"           onclick="closeMob()">Il Team</a>
+  <a href="#servizi"        onclick="closeMob()">Servizi</a>
+  <a href="#come-lavoriamo" onclick="closeMob()">Come Lavoriamo</a>
+  <a href="#per-chi"        onclick="closeMob()">Clienti</a>
+  <a href="#contatti"       onclick="closeMob()">Contatti</a>
+</div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo"><span class="nav-dot"></span>Globe Agency</a>
+      <ul class="nav-links">
+        <li><a href="#chi-siamo">Chi Siamo</a></li>
+        <li><a href="#team">Il Team</a></li>
+        <li><a href="#servizi">Servizi</a></li>
+        <li><a href="#come-lavoriamo">Come Lavoriamo</a></li>
+        <li><a href="#per-chi">Clienti</a></li>
+        <li><a href="#contatti" class="nav-cta">Contatti</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div>
+        <div class="hero-badge">8 anni di esperienza &middot; 30+ professionisti &middot; 500+ campagne</div>
+        <h1 class="hero-headline">Il brand che<br>non si vede,<br><em>non esiste.</em></h1>
+        <p class="hero-sub">Un team di 30+ professionisti dedicati. Sei reparti specializzati. Una missione: connettere brand e creator con precisione chirurgica, a scala, su ogni mercato — locale e digitale.</p>
+        <div class="hero-actions">
+          <a href="#contatti" class="btn-primary">Inizia ora <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="#servizi"  class="btn-ghost">Scopri i servizi <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg></a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="globe-wrap">
+          <svg viewBox="0 0 420 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="gGrad" cx="40%" cy="35%" r="65%"><stop offset="0%" stop-color="#2a2a2a"/><stop offset="100%" stop-color="#0a0a0a"/></radialGradient>
+              <radialGradient id="gGlow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#c8f04d" stop-opacity="0.15"/><stop offset="100%" stop-color="#c8f04d" stop-opacity="0"/></radialGradient>
+              <clipPath id="gClip"><circle cx="210" cy="210" r="110"/></clipPath>
+            </defs>
+            <circle cx="210" cy="210" r="160" fill="url(#gGlow)"/>
+            <g class="ring-orbit"><ellipse cx="210" cy="210" rx="160" ry="50" stroke="rgba(200,240,77,0.12)" stroke-width="1"/><circle cx="370" cy="210" r="5" fill="#c8f04d" opacity="0.8"/></g>
+            <g class="ring-orbit2"><ellipse cx="210" cy="210" rx="130" ry="60" stroke="rgba(200,240,77,0.08)" stroke-width="1" transform="rotate(60 210 210)"/><circle cx="340" cy="210" r="4" fill="#c8f04d" opacity="0.5" transform="rotate(60 210 210)"/></g>
+            <g class="ring-orbit3"><ellipse cx="210" cy="210" rx="180" ry="40" stroke="rgba(255,255,255,0.04)" stroke-width="1" transform="rotate(-30 210 210)"/><circle cx="390" cy="210" r="3" fill="rgba(200,240,77,0.6)" transform="rotate(-30 210 210)"/></g>
+            <g class="globe-core">
+              <circle cx="210" cy="210" r="110" fill="url(#gGrad)"/>
+              <circle cx="210" cy="210" r="110" stroke="rgba(200,240,77,0.2)" stroke-width="1"/>
+              <g clip-path="url(#gClip)" opacity="0.25">
+                <ellipse cx="210" cy="210" rx="110" ry="30" stroke="#c8f04d" stroke-width="0.5"/>
+                <ellipse cx="210" cy="210" rx="110" ry="60" stroke="#c8f04d" stroke-width="0.5"/>
+                <ellipse cx="210" cy="210" rx="110" ry="90" stroke="#c8f04d" stroke-width="0.5"/>
+                <line x1="210" y1="100" x2="210" y2="320" stroke="#c8f04d" stroke-width="0.5"/>
+                <line x1="145" y1="103" x2="275" y2="317" stroke="#c8f04d" stroke-width="0.5"/>
+                <line x1="103" y1="145" x2="317" y2="275" stroke="#c8f04d" stroke-width="0.5"/>
+              </g>
+              <ellipse cx="185" cy="175" rx="30" ry="20" fill="white" opacity="0.04" transform="rotate(-20 185 175)"/>
+              <circle class="dpulse" cx="180" cy="200" r="4" fill="#c8f04d"/>
+              <circle class="dpulse" cx="230" cy="185" r="4" fill="#c8f04d"/>
+              <circle class="dpulse" cx="210" cy="225" r="4" fill="#c8f04d"/>
+              <line x1="180" y1="200" x2="230" y2="185" stroke="#c8f04d" stroke-width="0.5" opacity="0.3"/>
+              <line x1="230" y1="185" x2="210" y2="225" stroke="#c8f04d" stroke-width="0.5" opacity="0.3"/>
+              <line x1="180" y1="200" x2="210" y2="225" stroke="#c8f04d" stroke-width="0.5" opacity="0.3"/>
+            </g>
+            <circle cx="90" cy="130" r="2" fill="#c8f04d" opacity="0.4"/>
+            <circle cx="350" cy="290" r="2" fill="#c8f04d" opacity="0.3"/>
+            <circle cx="310" cy="100" r="1.5" fill="#c8f04d" opacity="0.5"/>
+            <circle cx="70"  cy="280" r="1.5" fill="#c8f04d" opacity="0.35"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-line"></div>
+</section>
+
+<!-- NUMERI -->
+<section id="numbers">
+  <div class="container">
+    <div class="stats-grid reveal">
+      <div class="stat-item">
+        <div class="stat-num"><span class="counter" data-target="8">0</span><span class="stat-suf">+</span></div>
+        <div class="stat-lbl">Anni di esperienza nel settore</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num"><span class="counter" data-target="500">0</span><span class="stat-suf">+</span></div>
+        <div class="stat-lbl">Campagne gestite con successo</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num"><span class="counter" data-target="5000">0</span><span class="stat-suf">+</span></div>
+        <div class="stat-lbl">Creator nel nostro network</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num"><span class="counter" data-target="300">0</span><span class="stat-suf">+</span></div>
+        <div class="stat-lbl">Clienti soddisfatti</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHI SIAMO -->
+<section id="chi-siamo">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visual reveal">
+        <div class="about-img">
+          <div class="about-img-inner">
+            <svg viewBox="0 0 300 375" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:80%;opacity:0.5">
+              <rect x="30" y="50" width="240" height="280" rx="8" stroke="rgba(200,240,77,0.15)" stroke-width="1"/>
+              <rect x="50" y="80" width="200" height="100" rx="4" fill="rgba(200,240,77,0.04)" stroke="rgba(200,240,77,0.1)" stroke-width="0.5"/>
+              <circle cx="150" cy="130" r="30" stroke="rgba(200,240,77,0.2)" stroke-width="1"/>
+              <line x1="50" y1="210" x2="250" y2="210" stroke="rgba(200,240,77,0.08)" stroke-width="0.5"/>
+              <rect x="50" y="230" width="120" height="8" rx="2" fill="rgba(255,255,255,0.05)"/>
+              <rect x="50" y="248" width="80"  height="6" rx="2" fill="rgba(255,255,255,0.03)"/>
+              <rect x="50" y="272" width="200" height="40" rx="4" fill="rgba(200,240,77,0.05)" stroke="rgba(200,240,77,0.1)" stroke-width="0.5"/>
+              <circle cx="70" cy="292" r="8" fill="rgba(200,240,77,0.15)"/>
+              <rect x="88" y="284" width="80" height="5" rx="2" fill="rgba(255,255,255,0.05)"/>
+              <rect x="88" y="296" width="50" height="4" rx="2" fill="rgba(255,255,255,0.03)"/>
+            </svg>
+          </div>
+        </div>
+        <div class="about-tag t1"><span>500+</span> campagne gestite</div>
+        <div class="about-tag t2"><span>30+</span> professionisti</div>
+      </div>
+      <div class="about-body">
+        <div class="eyebrow about-eyebrow reveal">Chi Siamo</div>
+        <h2 class="section-title about-title reveal d1">Non un'agenzia.<br>Una struttura.</h2>
+        <p class="about-text reveal d2">Globe Agency è una realtà strutturata con oltre 30 professionisti organizzati in sei reparti dedicati. Dal 2016 gestiamo campagne di influencer marketing per brand nazionali, attività locali ed e-commerce — con la stessa precisione di una grande agenzia internazionale e la conoscenza profonda del mercato italiano. Ogni cliente ha un team dedicato. Ogni campagna ha un responsabile. Nessuna delega al caso.</p>
+        <ul class="values">
+          <li class="reveal d2">
+            <div class="val-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+            <div class="val-text"><strong>Team dedicato per ogni cliente</strong>Account manager, strategist e creative director assegnati al tuo progetto dall'inizio alla fine.</div>
+          </li>
+          <li class="reveal d3">
+            <div class="val-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+            <div class="val-text"><strong>5.000+ creator in network attivo</strong>Selezionati, verificati e gestiti dal nostro reparto Talent su tutto il territorio nazionale.</div>
+          </li>
+          <li class="reveal d4">
+            <div class="val-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+            <div class="val-text"><strong>Scala locale e digitale</strong>Reparti separati per attività fisiche e brand online. Stessa qualità, approcci diversi.</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <div class="container">
+    <div class="team-header">
+      <div class="eyebrow reveal">La Struttura</div>
+      <h2 class="section-title reveal d1">30+ professionisti.<br>Sei reparti dedicati.</h2>
+      <p class="section-sub reveal d2">Ogni reparto ha un responsabile senior, processi definiti e obiettivi misurabili. Non lavoriamo in modo generalista — ogni persona in Globe Agency è specializzata in quello che fa.</p>
+    </div>
+    <div class="team-bar reveal">
+      <div class="tbar-item"><span class="tbar-num">30<span>+</span></span><span class="tbar-lbl">Dipendenti</span></div>
+      <div class="tbar-div"></div>
+      <div class="tbar-item"><span class="tbar-num">6</span><span class="tbar-lbl">Reparti</span></div>
+      <div class="tbar-div"></div>
+      <div class="tbar-item"><span class="tbar-num">150<span>+</span></span><span class="tbar-lbl">Brand partner</span></div>
+      <div class="tbar-div"></div>
+      <div class="tbar-item"><span class="tbar-num">2</span><span class="tbar-lbl">Aree operative</span></div>
+    </div>
+    <div class="reparti">
+      <div class="rep-card reveal">
+        <div class="rep-top"><div class="rep-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg></div><span class="rep-num">01</span></div>
+        <div class="rep-name">Strategy &amp; Analytics</div>
+        <div class="rep-desc">Pianificazione campagne, definizione KPI, analisi dati e reportistica avanzata. Il reparto che trasforma gli obiettivi di business in piani d'azione concreti.</div>
+        <div class="rep-tags"><span>Campaign Planning</span><span>KPI Modeling</span><span>Report</span></div>
+      </div>
+      <div class="rep-card reveal d1">
+        <div class="rep-top"><div class="rep-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div><span class="rep-num">02</span></div>
+        <div class="rep-name">Talent Management</div>
+        <div class="rep-desc">Scouting, selezione, onboarding e gestione continuativa dei creator. 5.000+ profili verificati su tutto il territorio nazionale, da micro a macro influencer.</div>
+        <div class="rep-tags"><span>Scouting</span><span>Creator Relations</span><span>Contratti</span></div>
+      </div>
+      <div class="rep-card reveal d2">
+        <div class="rep-top"><div class="rep-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div><span class="rep-num">03</span></div>
+        <div class="rep-name">Content &amp; Creative</div>
+        <div class="rep-desc">Brief creativi, direzione visiva, copy e supervisione contenuti. Garantiamo coerenza tra brand identity e output finale su ogni formato.</div>
+        <div class="rep-tags"><span>Creative Direction</span><span>Copywriting</span><span>Brief</span></div>
+      </div>
+      <div class="rep-card reveal">
+        <div class="rep-top"><div class="rep-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg></div><span class="rep-num">04</span></div>
+        <div class="rep-name">Social Media Management</div>
+        <div class="rep-desc">Gestione completa dei profili Instagram. Calendario editoriale, pubblicazione, community management e ottimizzazione continua dell'account.</div>
+        <div class="rep-tags"><span>Instagram</span><span>Community</span><span>Crescita organica</span></div>
+      </div>
+      <div class="rep-card reveal d1">
+        <div class="rep-top"><div class="rep-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="7" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div><span class="rep-num">05</span></div>
+        <div class="rep-name">Brand Partnerships</div>
+        <div class="rep-desc">Gestione relazioni con brand partner, negoziazione contratti, coordinamento aziende-creator e sviluppo collaborazioni a lungo termine.</div>
+        <div class="rep-tags"><span>Account Management</span><span>Negoziazione</span><span>Partnership</span></div>
+      </div>
+      <div class="rep-card reveal d2">
+        <div class="rep-top"><div class="rep-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><span class="rep-num">06</span></div>
+        <div class="rep-name">Local &amp; Retail</div>
+        <div class="rep-desc">Reparto dedicato ad attività locali: ristoranti, negozi, estetiste, palestre. Creator geo-localizzati, campagne di prossimità e risultati in 30 giorni.</div>
+        <div class="rep-tags"><span>Micro-influencer</span><span>Geo-targeting</span><span>Locale</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVIZI -->
+<section id="servizi">
+  <div class="container">
+    <div class="servizi-header">
+      <div>
+        <div class="eyebrow reveal">Cosa Facciamo</div>
+        <h2 class="section-title reveal d1">Sei servizi.<br>Un unico obiettivo.</h2>
+      </div>
+      <p class="section-sub reveal d2">Dalla prima strategia al report finale, gestiamo ogni fase con strumenti professionali e un team dedicato al tuo settore.</p>
+    </div>
+    <div class="servizi-grid reveal">
+      <div class="serv-card">
+        <div class="serv-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg></div>
+        <div class="serv-name">Influencer Marketing &amp; Campagne Sponsorizzate</div>
+        <div class="serv-desc">Progettiamo e gestiamo campagne end-to-end su Instagram. Brief creativo, selezione creator, delivery content, monitoraggio KPI in tempo reale.</div>
+        <div class="serv-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </div>
+      <div class="serv-card">
+        <div class="serv-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div>
+        <div class="serv-name">Talent Scouting &amp; Gestione Creator</div>
+        <div class="serv-desc">Identifichiamo creator emergenti prima che diventino mainstream. Gestiamo crescita, contratti e collaborazioni con approccio da talent agency professionale.</div>
+        <div class="serv-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </div>
+      <div class="serv-card">
+        <div class="serv-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="7" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+        <div class="serv-name">Brand Strategy per Aziende</div>
+        <div class="serv-desc">Definiamo il posizionamento digitale del tuo brand, identifichiamo i creator più affini e costruiamo una presenza online coerente e autorevole nel tempo.</div>
+        <div class="serv-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </div>
+      <div class="serv-card">
+        <div class="serv-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        <div class="serv-name">Crescita per Attività Locali</div>
+        <div class="serv-desc">Portiamo creator locali e micro-influencer a promuovere ristoranti, negozi, centri estetici e attività di prossimità. Risultati visibili in 30 giorni.</div>
+        <div class="serv-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </div>
+      <div class="serv-card">
+        <div class="serv-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
+        <div class="serv-name">E-commerce &amp; Startup Scaling</div>
+        <div class="serv-desc">Campagne ad alto impatto per e-commerce che vogliono acquisire clienti velocemente. UGC, seeding prodotto e creator affiliate pensati per scalare.</div>
+        <div class="serv-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </div>
+      <div class="serv-card">
+        <div class="serv-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg></div>
+        <div class="serv-name">Content Strategy &amp; Instagram Management</div>
+        <div class="serv-desc">Pianificazione editoriale, calendari contenuti, caption copy e gestione completa del profilo Instagram. Dal feed alle stories, fino ai reel virali.</div>
+        <div class="serv-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COME LAVORIAMO -->
+<section id="come-lavoriamo">
+  <div class="container">
+    <div class="process-header">
+      <div class="eyebrow reveal">Il Processo</div>
+      <h2 class="section-title reveal d1">Come lavoriamo</h2>
+      <p class="section-sub reveal d2">Quattro fasi precise. Zero improvvisazione. Ogni progetto inizia con un'analisi approfondita e si chiude con dati reali.</p>
+    </div>
+    <div class="process-wrap" id="processWrap">
+      <div class="process-line"></div>
+      <div class="process-fill" id="processFill"></div>
+      <div class="process-steps">
+        <div class="step reveal">
+          <div class="step-dot"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div>
+          <div class="step-n">01</div><div class="step-title">Analisi &amp; Strategia</div>
+          <div class="step-desc">Studiamo il tuo brand, il mercato e la concorrenza. Definiamo obiettivi chiari e piano d'azione.</div>
+        </div>
+        <div class="step reveal d1">
+          <div class="step-dot"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <div class="step-n">02</div><div class="step-title">Selezione Creator</div>
+          <div class="step-desc">Identifichiamo i creator più adatti per affinità, audience e stile comunicativo. Nessuna scelta casuale.</div>
+        </div>
+        <div class="step reveal d2">
+          <div class="step-dot"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+          <div class="step-n">03</div><div class="step-title">Lancio Campagna</div>
+          <div class="step-desc">Brief creativo, approvazione contenuti, coordinamento pubblicazioni e monitoraggio attivo in tempo reale.</div>
+        </div>
+        <div class="step reveal d3">
+          <div class="step-dot"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg></div>
+          <div class="step-n">04</div><div class="step-title">Report &amp; Ottimizzazione</div>
+          <div class="step-desc">Report completo con metriche, insights strategici e raccomandazioni per le campagne future.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PER CHI -->
+<section id="per-chi">
+  <div class="container">
+    <div class="perchi-header">
+      <div class="eyebrow reveal">Per Chi Lavoriamo</div>
+      <h2 class="section-title reveal d1" style="max-width:520px">Quattro categorie.<br>Un'unica disciplina.</h2>
+    </div>
+    <div class="perchi-grid">
+      <div class="perchi-card reveal">
+        <div class="perchi-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="7" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+        <div class="perchi-title">Aziende &amp; Brand</div>
+        <div class="perchi-text">Brand consolidati che vogliono espandere la propria presenza digitale con campagne influencer precise, misurabili e allineate alla brand identity.</div>
+        <a href="#contatti" class="perchi-link">Parliamoci <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="perchi-card reveal d1">
+        <div class="perchi-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z"/><path d="M12 8v4l3 3"/></svg></div>
+        <div class="perchi-title">Influencer &amp; Creator</div>
+        <div class="perchi-text">Creator in crescita che cercano collaborazioni di qualità, gestione professionale delle campagne e un network che li faccia evolvere verso il livello successivo.</div>
+        <a href="#contatti" class="perchi-link">Entra nel network <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="perchi-card reveal d2">
+        <div class="perchi-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        <div class="perchi-title">Attività Locali</div>
+        <div class="perchi-text">Ristoranti, negozi, palestre, centri estetici. Micro-campagne con creator locali che portano clienti reali, non solo like.</div>
+        <a href="#contatti" class="perchi-link">Aumenta la visibilità <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="perchi-card reveal d3">
+        <div class="perchi-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></div>
+        <div class="perchi-title">E-commerce &amp; Startup</div>
+        <div class="perchi-text">Prodotti nuovi che hanno bisogno di awareness rapida. UGC campaigns, seeding e creator affiliate costruiti per convertire, non solo per fare impressioni.</div>
+        <a href="#contatti" class="perchi-link">Scala il tuo shop <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIANZE -->
+<section id="testimonianze">
+  <div class="container">
+    <div class="testi-header">
+      <div class="eyebrow reveal">Testimonianze</div>
+      <h2 class="section-title reveal d1">Quello che dicono i clienti</h2>
+      <p class="section-sub reveal d2">Numeri e strategie contano. Ma la cosa che ci tiene svegli la notte è la soddisfazione di chi ci affida il proprio brand.</p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <div class="stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <div class="testi-text">"Globe Agency ha trasformato il nostro approccio all'Instagram marketing. In 3 mesi abbiamo triplicato l'engagement e generato vendite dirette dal canale. Professionalità rara nel settore."</div>
+        <div class="testi-author"><div class="testi-av">MR</div><div><div class="testi-name">Marco Rossetti</div><div class="testi-role">CEO, Vela Moda — Brand fashion D2C</div></div></div>
+      </div>
+      <div class="testi-card reveal d1">
+        <div class="stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <div class="testi-text">"Avevo già provato due agenzie prima di loro. La differenza è che Globe lavora con i dati, non con le sensazioni. Ogni creator scelto aveva una logica precisa. I risultati si sono visti subito."</div>
+        <div class="testi-author"><div class="testi-av">SF</div><div><div class="testi-name">Sara Fontana</div><div class="testi-role">Founder, BeautyBox Italia — E-commerce beauty</div></div></div>
+      </div>
+      <div class="testi-card reveal d2">
+        <div class="stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <div class="testi-text">"Ho aperto un ristorante e non sapevo da dove cominciare con i social. Globe mi ha seguito dal primo giorno: creator locali, contenuti autentici, e il locale si è riempito dalla prima settimana."</div>
+        <div class="testi-author"><div class="testi-av">AL</div><div><div class="testi-name">Antonio Luca</div><div class="testi-role">Proprietario, Osteria del Borgo — Napoli</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="container">
+    <div class="faq-inner">
+      <div>
+        <div class="eyebrow reveal" style="margin-bottom:16px">FAQ</div>
+        <h2 class="section-title reveal d1">Domande frequenti</h2>
+        <p class="section-sub reveal d2" style="margin-top:20px">Non trovi la risposta? Scrivici direttamente.</p>
+        <a href="#contatti" class="btn-primary reveal d3" style="margin-top:36px;display:inline-flex">Contattaci <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="faq-list reveal d1">
+        <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Quanto dura mediamente una campagna?<div class="faq-tog"><div class="faq-ico"></div></div></div><div class="faq-a">Una campagna standard dura tra le 2 e le 6 settimane. Le campagne awareness si concentrano in 2-3 settimane con più creator in parallelo. Le campagne di brand authority si costruiscono in 3-6 mesi con creator fissi e contenuti ricorrenti.</div></div>
+        <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Con quale tipo di creator lavorate?<div class="faq-tog"><div class="faq-ico"></div></div></div><div class="faq-a">Gestiamo creator da 5.000 a oltre 500.000 follower. Il criterio principale è l'engagement rate reale, l'affinità con il brand e la qualità del pubblico. In molti casi un micro-influencer da 20k genera risultati migliori di uno da 200k.</div></div>
+        <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Come misurate i risultati di una campagna?<div class="faq-tog"><div class="faq-ico"></div></div></div><div class="faq-a">Forniamo report completi: reach, impression, engagement rate, link click, conversioni con UTM o pixel, confronto con benchmark di settore. Ogni report include una sezione qualitativa sul sentiment e raccomandazioni strategiche.</div></div>
+        <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Lavorate anche fuori dalla Campania?<div class="faq-tog"><div class="faq-ico"></div></div></div><div class="faq-a">Sì. Abbiamo creator e clienti in tutta Italia. Per le attività locali identifichiamo creator geo-localizzati nella città o regione di interesse, garantendo un pubblico pertinente e presenze fisiche reali quando necessario.</div></div>
+        <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Posso lavorare con Globe se sono un creator emergente?<div class="faq-tog"><div class="faq-ico"></div></div></div><div class="faq-a">Assolutamente sì. Una parte del nostro lavoro è identificare creator con alto potenziale prima che esplodano. Se hai un profilo autentico, crescita organica e un'audience coinvolta, siamo interessati indipendentemente dai follower.</div></div>
+        <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Qual è il budget minimo per iniziare?<div class="faq-tog"><div class="faq-ico"></div></div></div><div class="faq-a">Non esiste un budget standard: dipende dagli obiettivi, dalla tipologia di creator e dalla durata della campagna. In fase di primo contatto facciamo sempre una consulenza gratuita per proporre un piano personalizzato.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATTI -->
+<section id="contatti">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-left">
+        <div class="eyebrow reveal" style="margin-bottom:16px">Contattaci</div>
+        <h2 class="section-title reveal d1">Pronti a<br>fare sul serio?</h2>
+        <p class="reveal d2">Raccontaci il tuo progetto. Che tu sia un brand che vuole crescere, un creator che cerca collaborazioni o un'attività locale che vuole riempire i tavoli — troveremo insieme la strategia giusta.</p>
+        <div class="contact-details reveal d3">
+          <div class="cdet"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>info@globeagency.it</div>
+          <div class="cdet"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.56 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>+39 081 000 0000</div>
+          <div class="cdet"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Napoli, Italia</div>
+        </div>
+      </div>
+      <div class="cform reveal d2">
+        <div id="formFields">
+          <div class="form-row">
+            <div class="fg"><label>Nome *</label><input type="text" id="fname" placeholder="Il tuo nome" /><div class="ferr" id="fname-err">Campo obbligatorio</div></div>
+            <div class="fg"><label>Cognome</label><input type="text" id="lname" placeholder="Cognome" /></div>
+          </div>
+          <div class="fg"><label>Email *</label><input type="email" id="femail" placeholder="email@esempio.it" /><div class="ferr" id="femail-err">Inserisci un'email valida</div></div>
+          <div class="fg">
+            <label>Tipo di collaborazione *</label>
+            <select id="ftype">
+              <option value="">Seleziona una categoria</option>
+              <option>Campagna Influencer Marketing</option>
+              <option>Talent Scouting / Creator</option>
+              <option>Brand Strategy Aziendale</option>
+              <option>Attività Locale</option>
+              <option>E-commerce / Startup</option>
+              <option>Content &amp; Instagram Management</option>
+              <option>Altro</option>
+            </select>
+            <div class="ferr" id="ftype-err">Seleziona una categoria</div>
+          </div>
+          <div class="fg"><label>Messaggio *</label><textarea id="fmessage" placeholder="Raccontaci il tuo progetto..."></textarea><div class="ferr" id="fmessage-err">Campo obbligatorio</div></div>
+          <button class="btn-submit" id="submitBtn" onclick="submitForm()">
+            <div class="btn-loader"></div>
+            <span class="btn-txt">Invia messaggio <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+          </button>
+        </div>
+        <div class="form-ok" id="formOk">
+          <div class="ok-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <strong style="font-family:var(--display);font-size:1.1rem">Messaggio inviato!</strong>
+          <p>Grazie per averci contattato. Ti risponderemo entro 24 ore lavorative.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#hero" class="nav-logo"><span class="nav-dot"></span>Globe Agency</a>
+        <p class="footer-tagline">L'agenzia strutturata con 30+ professionisti. Connettere brand e creator con precisione e risultati misurabili. Dal 2016.</p>
+        <div class="footer-socials">
+          <a href="#" class="soc" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg></a>
+          <a href="#" class="soc" aria-label="LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+          <a href="#" class="soc" aria-label="TikTok"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Servizi</h4>
+        <ul>
+          <li><a href="#servizi">Influencer Marketing</a></li>
+          <li><a href="#servizi">Talent Scouting</a></li>
+          <li><a href="#servizi">Brand Strategy</a></li>
+          <li><a href="#servizi">Attività Locali</a></li>
+          <li><a href="#servizi">E-commerce</a></li>
+          <li><a href="#servizi">Content Strategy</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Agenzia</h4>
+        <ul>
+          <li><a href="#chi-siamo">Chi Siamo</a></li>
+          <li><a href="#team">Il Team</a></li>
+          <li><a href="#come-lavoriamo">Come Lavoriamo</a></li>
+          <li><a href="#per-chi">Per Chi</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contatti</h4>
+        <ul>
+          <li><a href="mailto:info@globeagency.it">info@globeagency.it</a></li>
+          <li><a href="tel:+390810000000">+39 081 000 0000</a></li>
+          <li><a href="#contatti">Lavora con noi</a></li>
+          <li><a href="#contatti">Diventa creator</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2025 Globe Agency S.r.l. &mdash; P.IVA 00000000000</span>
+      <span>Privacy Policy &middot; Cookie Policy</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* NAVBAR */
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  /* HAMBURGER */
+  const ham = document.getElementById('hamburger');
+  const mob = document.getElementById('mobileMenu');
+  ham.addEventListener('click', () => {
+    const o = ham.classList.toggle('open');
+    mob.classList.toggle('open', o);
+    document.body.style.overflow = o ? 'hidden' : '';
+  });
+  function closeMob() {
+    ham.classList.remove('open');
+    mob.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  /* REVEAL — threshold:0 so every element triggers as soon as 1px enters viewport */
+  const ro = new IntersectionObserver(
+    (entries) => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+    { threshold: 0 }
+  );
+  document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+  /* COUNTERS */
+  function animCounter(el, target, dur) {
+    dur = dur || 1800;
+    let start = null;
+    const run = ts => {
+      if (!start) start = ts;
+      const p = Math.min((ts - start) / dur, 1);
+      const ease = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.floor(ease * target).toLocaleString('it-IT');
+      if (p < 1) requestAnimationFrame(run);
+      else el.textContent = target.toLocaleString('it-IT');
+    };
+    requestAnimationFrame(run);
+  }
+  const counterObs = new IntersectionObserver(
+    (entries) => entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.counter').forEach(c => animCounter(c, parseInt(c.dataset.target)));
+        counterObs.unobserve(e.target);
+      }
+    }),
+    { threshold: 0 }
+  );
+  const sg = document.querySelector('.stats-grid');
+  if (sg) counterObs.observe(sg);
+
+  /* PROCESS STEPS */
+  const procObs = new IntersectionObserver(
+    (entries) => entries.forEach(e => {
+      if (e.isIntersecting) {
+        document.querySelectorAll('.step').forEach((s, i) => {
+          setTimeout(() => s.classList.add('active'), i * 200);
+        });
+        const fill = document.getElementById('processFill');
+        if (fill) setTimeout(() => fill.classList.add('go'), 400);
+        procObs.unobserve(e.target);
+      }
+    }),
+    { threshold: 0 }
+  );
+  const pw = document.getElementById('processWrap');
+  if (pw) procObs.observe(pw);
+
+  /* FAQ */
+  function toggleFaq(btn) {
+    const ans = btn.nextElementSibling;
+    const wasOpen = btn.classList.contains('open');
+    document.querySelectorAll('.faq-q.open').forEach(q => {
+      q.classList.remove('open');
+      q.nextElementSibling.classList.remove('open');
+    });
+    if (!wasOpen) { btn.classList.add('open'); ans.classList.add('open'); }
+  }
+
+  /* FORM */
+  function submitForm() {
+    const fields = [
+      { id:'fname',    errId:'fname-err',    check: v => v.trim() !== '' },
+      { id:'femail',   errId:'femail-err',   check: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) },
+      { id:'ftype',    errId:'ftype-err',    check: v => v !== '' },
+      { id:'fmessage', errId:'fmessage-err', check: v => v.trim() !== '' },
+    ];
+    let valid = true;
+    fields.forEach(f => {
+      const el = document.getElementById(f.id);
+      const err = document.getElementById(f.errId);
+      el.classList.remove('err'); err.classList.remove('show');
+      if (!f.check(el.value)) { el.classList.add('err'); err.classList.add('show'); valid = false; }
+    });
+    if (!valid) return;
+    const btn = document.getElementById('submitBtn');
+    btn.classList.add('loading');
+    setTimeout(() => {
+      btn.classList.remove('loading');
+      document.getElementById('formFields').style.display = 'none';
+      document.getElementById('formOk').classList.add('show');
+    }, 1800);
+  }
+
+  /* HERO PARALLAX */
+  const hg = document.querySelector('.hero-glow');
+  window.addEventListener('scroll', () => {
+    if (hg && window.scrollY < window.innerHeight)
+      hg.style.transform = 'translate(-50%, calc(-50% + ' + (window.scrollY * 0.15) + 'px))';
+  });
+</script>
+</body>
+</html>
